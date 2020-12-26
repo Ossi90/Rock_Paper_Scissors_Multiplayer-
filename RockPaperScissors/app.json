@@ -1,0 +1,12 @@
+{
+  "name": "RockPaperScissors",
+  "displayName": "RockPaperScissors",
+  "expo": {
+    "name": "RockPaperScissors",
+    "slug": "RockPaperScissors",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
