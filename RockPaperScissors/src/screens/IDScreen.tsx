@@ -1,23 +1,34 @@
 import React , { Component }from 'react';
-import { StyleSheet, Text, View, Button,TextInput,ImageBackground,Image } from 'react-native';
+import { StyleSheet, Text, View, Button,TextInput,ImageBackground,Image,TouchableOpacity } from 'react-native';
 
 const IDScreen = () => {
     const [text, setText] = React.useState('');
 
     return (
-       <View style={styles.container}>
-     
+    <View style={styles.container}>
+    
         <ImageBackground 
        source={require('../../assets/ID_BackGround/background-gif.gif')}
          style={styles.backgroundImage}>
         <View style={styles.container2}>
-            <Text style={styles.text}>Enter Game Tag!</Text>
+                <Image
+                source={require('../../assets/rps.gif')}
+                style={styles.rps}/>
+                   <View />
+        <Text>{emptySpace(3)}</Text>
+            <Text style={styles.text2}></Text>
                <TextInput
                  style={styles.input}
                  value={text}
-                 onChangeText={text => setText(text)}
-       
-       />
+                 onChangeText={text => setText(text)}/>
+                  <Text>{emptySpace(2)}</Text>
+                     <TouchableOpacity style = {styles.button} activeOpacity={0.5}>
+                        <Image
+                        source={require('../../assets/ID_BackGround/IDbutton2.png')}
+                        style={styles.button}/>
+                   <View />
+
+            </TouchableOpacity>
         </View>
          </ImageBackground>
        </View>
@@ -25,6 +36,13 @@ const IDScreen = () => {
 
 }
 
+function emptySpace(numberOfSpaces){
+  let space = "";
+  for(let i = 0; i<numberOfSpaces; i++){
+    space += " \n"
+  }
+ return space;
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -39,8 +57,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  text: {
-    fontSize: 20,
+  text1:{
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "pink"
+  },
+  text2: {
+    fontSize: 40,
     fontWeight: "bold",
     color: "pink"
   },
@@ -48,7 +71,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "pink",
-    borderWidth: 0
+    borderBottomColor:'pink',
+   // borderColor: "pink",
+   // borderWidth: 0.5,
+    //padding: 30
   },
  backgroundImage: {
     width: '100%',
@@ -56,6 +82,26 @@ const styles = StyleSheet.create({
     flex: 1 
   
   },
+button:{
+  flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 0.0,
+    height: 100,
+    borderRadius: 5,
+    margin: 5,
+     width: 300
+  
+},
+rps:{
+  flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 0.0,
+    height: 200,
+    borderRadius: 5,
+    margin: 5,
+     width: 200
+  
+}
   
 });
 
