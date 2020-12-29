@@ -1,5 +1,3 @@
-// This module uses mqtt provided by paho https://github.com/rh389/react-native-paho-mqtt
-
 import React, { useState, Fragment } from 'react';
 import { Client, Message } from 'react-native-paho-mqtt';
 
