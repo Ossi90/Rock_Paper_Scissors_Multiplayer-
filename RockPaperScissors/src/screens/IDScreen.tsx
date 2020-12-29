@@ -1,9 +1,11 @@
-import React , { Component }from 'react';
+import React , { Component, useState }from 'react';
 import { StyleSheet, Text, View, Button,TextInput,ImageBackground,Image,TouchableOpacity } from 'react-native';
 
 const IDScreen = () => {
-    const [text, setText] = React.useState('');
-
+const [text, setText] = useState('');
+const onPress = () => {
+  console.log(text);
+}
     return (
     <View style={styles.container}>
     
@@ -16,18 +18,24 @@ const IDScreen = () => {
                 style={styles.rps}/>
                    <View />
         <Text>{emptySpace(3)}</Text>
-            <Text style={styles.text2}></Text>
-               <TextInput
-                 style={styles.input}
-                 value={text}
-                 onChangeText={text => setText(text)}/>
+           <TextInput
+        style={styles.input}
+        placeholder="         Enter Game tag.."
+        onChangeText={text => setText(text)}
+        defaultValue={text}
+      />
+             
                   <Text>{emptySpace(2)}</Text>
-                     <TouchableOpacity style = {styles.button} activeOpacity={0.5}>
+                     <TouchableOpacity style = {styles.button} activeOpacity={0.5}   onPress={onPress}>
+                     
                         <Image
                         source={require('../../assets/ID_BackGround/IDbutton2.png')}
-                        style={styles.button}/>
-                   <View />
+                        style={styles.button}
+                        
+                        />
 
+                   <View />
+  
             </TouchableOpacity>
         </View>
          </ImageBackground>
@@ -35,6 +43,7 @@ const IDScreen = () => {
     )
 
 }
+
 
 function emptySpace(numberOfSpaces){
   let space = "";
@@ -70,11 +79,8 @@ const styles = StyleSheet.create({
   input:{
     fontSize: 20,
     fontWeight: "bold",
-    color: "pink",
-    borderBottomColor:'pink',
-   // borderColor: "pink",
-   // borderWidth: 0.5,
-    //padding: 30
+    color: "white",
+ 
   },
  backgroundImage: {
     width: '100%',
@@ -87,7 +93,6 @@ button:{
     alignItems: 'center',
     borderWidth: 0.0,
     height: 100,
-    borderRadius: 5,
     margin: 5,
      width: 300
   
@@ -97,7 +102,7 @@ rps:{
     alignItems: 'center',
     borderWidth: 0.0,
     height: 200,
-    borderRadius: 5,
+    //borderRadius: 5,
     margin: 5,
      width: 200
   
