@@ -1,11 +1,10 @@
 import React , { Component, useState }from 'react';
 import { StyleSheet, Text, View, Button,TextInput,ImageBackground,Image,TouchableOpacity } from 'react-native';
+import userInfo from '../modules/UserInfo.ts'
 
-const IDScreen = () => {
-const [text, setText] = useState('');
-const onPress = () => {
-  console.log(text);
-}
+const IDScreen = props => {
+const [text, setText] = useState("");
+
     return (
     <View style={styles.container}>
     
@@ -19,15 +18,22 @@ const onPress = () => {
                    <View />
         <Text>{emptySpace(3)}</Text>
            <TextInput
+            textAlign={'center'}
+        placeholder='Enter Game tag here..'
+        placeholderTextColor="gray"
         style={styles.input}
-        placeholder="         Enter Game tag.."
         onChangeText={text => setText(text)}
         defaultValue={text}
       />
              
                   <Text>{emptySpace(2)}</Text>
-                     <TouchableOpacity style = {styles.button} activeOpacity={0.5}   onPress={onPress}>
+                     <TouchableOpacity style = {styles.button} activeOpacity={0.5} onPress={() => {
+                         const user = new userInfo();
+                         user.setGameTag(text);            
+                         props.navigation.navigate("Home");
+                       }} >
                      
+                    
                         <Image
                         source={require('../../assets/ID_BackGround/IDbutton2.png')}
                         style={styles.button}
@@ -77,9 +83,14 @@ const styles = StyleSheet.create({
     color: "pink"
   },
   input:{
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "white",
+  textAlign: 'center',
+  fontSize: 20,
+   fontWeight: "bold",
+   color: "gray",
+   /*borderColor: "black",
+    borderRadius: 10,
+    borderWidth: 4,
+    backgroundColor: "#61dafb",*/
  
   },
  backgroundImage: {
