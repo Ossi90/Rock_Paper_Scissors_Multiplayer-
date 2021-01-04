@@ -7,22 +7,24 @@ import React, { Component, useEffect, useState } from 'react';
 
 
 export default class userInfo extends React.Component{
-   
+    userInfo={
+       gameTag: "",
+   }
 constructor(){
 super()
 }
 
-setGameTag = async (gameTag) => {
+/*setGameTag = async (gameTag) => {
         try {
             await AsyncStorage.setItem('tag', gameTag);
         } catch (error) {
             console.log(error);
         }
-    }
+    }*/
 
 
 
-getGameTag = async () => {
+/*getGameTag = async () => {
         try {
             const value = await AsyncStorage.getItem('tag');
             if (value !== null) {
@@ -31,10 +33,18 @@ getGameTag = async () => {
         } catch (error) {
              console.log("no user");
         }
-    }
+    }*/
 
- x = (tag) => {
-    console.log(tag);
+ setGameTag = (tag) => {
+    userInfo.gameTag = tag;
+}
+ getGameTag = () => {
+     if(userInfo.gameTag !==""){
+        return userInfo.gameTag; 
+     }else{
+         return "no user";
+     }
+    
 }
 
 }
