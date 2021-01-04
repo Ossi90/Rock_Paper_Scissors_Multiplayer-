@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import MQTTService from '../modules/MQTT.ts';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { Client, Message } from 'react-native-paho-mqtt';
+import userInfo from '../modules/UserInfo.ts'
 
 
 const game = {
@@ -23,6 +24,10 @@ const game = {
 };
 
 const HomeScreen = prop =>{
+  const user = new userInfo();
+  /*const getTag = () =>{
+     return user.getGameTag().then(data=>{return data.json()})
+  }*/
   const [state, setState] = useState({
     winOrLose: 'No Info',
     cpuScore: 0,
@@ -34,9 +39,11 @@ const HomeScreen = prop =>{
       winOrLose: chooseWeapon(wp),
     });
   };
+
+ 
   return (
     <View style={styles.container}>
-    
+      <Text>{user.getGameTag()}</Text>
       <Text> {state.winOrLose}</Text>
       <Button style={styles.buttons} onPress={() => setWeaponText(0)} title="Rock" />
       <Button style={styles.buttons} onPress={() => setWeaponText(1)} title="Scissors" />
@@ -47,7 +54,7 @@ const HomeScreen = prop =>{
 
 function battle(player, cpu) {
   const mqtt = new MQTTService();
-  mqtt.getSend(game.weapons[player]);
+  mqtt.getSend(game.weapons[player]); 
   console.log(game.weapons[player]);
   console.log(game.weapons[cpu]);
   if (game.winner(player) == cpu) {
